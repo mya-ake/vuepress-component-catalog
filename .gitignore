@@ -2,6 +2,7 @@
 node_modules
 /dist
 .nuxt
+docs/.vuepress/dist
 
 # local env files
 .env.local
