@@ -1,6 +1,7 @@
 const { join, resolve } = require('path');
 const { parse } = require('@vue/component-compiler-utils');
 const compiler = require('vue-template-compiler');
+const babel = require('babel-core');
 
 const {
   getFilePathList,
@@ -21,6 +22,21 @@ const isVueFile = path => /\.vue$/.test(path);
 
 const extractDoc = customBlocks => {
   return customBlocks.find(block => block.type === 'doc');
+};
+
+const buildDoc = (docBlock, componentObject) => {
+  let doc = `${docBlock.content}\n`;
+  if ('props' in componentObject) {
+    doc += `## Porps
+| prop | type | required | default |
+|:---:|:---:|:---:|:---:|\n`;
+    Object.entries(componentObject.props).forEach(([key, value]) => {
+      doc += `| ${key} | ${value.type.name} | ${Boolean(
+        value.required,
+      )} | ${String(value.default) || 'undefined'} |`;
+    });
+  }
+  return doc;
 };
 
 const buildScript = scriptBlock => {
@@ -51,11 +67,21 @@ const descriptor = parse({
   filename: targetFilename,
 });
 
-const doc = extractDoc(descriptor.customBlocks);
+// Transform Source to JS Object
+const { code } = babel.transform(descriptor.script.content, {
+  babelrc: false,
+  presets: ['env'],
+});
+const componentObject = eval(code);
+
+// Create Markdown
+const docBlock = extractDoc(descriptor.customBlocks);
+const doc = buildDoc(docBlock, componentObject);
 
 const distFilename = join(distDir, 'base-button.md');
-writeFile(distFilename, doc.content);
+writeFile(distFilename, doc);
 
+// Copy Component
 const componentSource = `<template>${descriptor.template.content}</template>
 
 ${buildScript(descriptor.script)}

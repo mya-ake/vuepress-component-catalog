@@ -16,6 +16,13 @@
 export default {
   name: 'base-button',
 
+  props: {
+    kind: {
+      type: String,
+      default: 'deafult',
+    },
+  },
+
   methods: {
     handleClick(evt) {
       this.$emit('click', evt);
