@@ -33,7 +33,7 @@ const buildDoc = (docBlock, componentObject) => {
     Object.entries(componentObject.props).forEach(([key, value]) => {
       doc += `| ${key} | ${value.type.name} | ${Boolean(
         value.required,
-      )} | ${String(value.default) || 'undefined'} |`;
+      )} | ${String(value.default) || 'undefined'} |\n`;
     });
   }
   return doc;

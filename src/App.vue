@@ -3,7 +3,8 @@
     <h1>Use vuepress as component catalog</h1>
 
     <div>
-      <base-button>sample button</base-button>
+      <base-button>Default Button</base-button>
+      <base-button variation="primary">Primary Button</base-button>
     </div>
   </div>
 </template>
