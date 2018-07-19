@@ -1,3 +1,9 @@
+<doc>
+# BaseButton
+
+ボタンのコンポーネント
+</doc>
+
 <template>
   <button class="base-button" v-on:click="handleClick">
     <slot/>
