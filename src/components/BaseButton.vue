@@ -2,6 +2,8 @@
 # BaseButton
 
 ボタンのコンポーネント
+
+<base-button>Sample Button</base-button>
 </doc>
 
 <template>

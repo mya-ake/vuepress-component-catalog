@@ -1,9 +1,9 @@
 .DS_Store
 node_modules
 /dist
-.nuxt
 docs/.vuepress/dist
 docs/components
+docs/.vuepress/components
 
 # local env files
 .env.local

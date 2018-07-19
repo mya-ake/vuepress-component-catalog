@@ -12,7 +12,7 @@ module.exports = {
         title: 'Components',
         collapsable: false,
         children: [
-          '/'
+          '/components/base-button.html'
         ],
       },
     ],
