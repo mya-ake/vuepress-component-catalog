@@ -1,15 +1,27 @@
 <doc>
 # BaseButton
 
+[[toc]]
+
+## About
+
 ボタンのコンポーネント
 
-## Variation(props)
+## Variation
 
 ### default
+
+```HTML
+<base-button>Default Button</base-button>
+```
 
 <base-button>Default Button</base-button>
 
 ### primary
+
+```HTML
+<base-button variation="primary">Primary Button</base-button>
+```
 
 <base-button variation="primary">Primary Button</base-button>
 
